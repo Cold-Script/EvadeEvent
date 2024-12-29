@@ -1,75 +1,48 @@
-local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
-local Window = Library:NewWindow("Evade | v1.2")
-local HolidayEvent = Window:NewSection("Holiday Event")
-HolidayEvent:CreateButton("Claim Ticket", function()
-task.spawn(function()
-while wait() do
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("BasePart") then
+v.CanCollide = false
+end
+end
+game:GetService("RunService").RenderStepped:Connect(function()
+if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(500, 200, 500) then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-500, 200, -500)
+end
+if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(-500, 200, -500) then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1100, 200, 270)
+end
+if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(1100, 200, 270) then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(500, 200, 500)
+end
+end)
+game:GetService("RunService").RenderStepped:Connect(function()
+if workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.CFrame
 end
-end)
-task.spawn(function()
-while wait() do
+if workspace.Game.Effects.Tickets.Ticket2.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket2.HumanoidRootPart.CFrame
 end
-end)
-task.spawn(function()
-while wait() do
+if workspace.Game.Effects.Tickets.Ticket3.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket3.HumanoidRootPart.CFrame
 end
-end)
-task.spawn(function()
-while wait() do
+if workspace.Game.Effects.Tickets.Ticket4.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket4.HumanoidRootPart.CFrame
 end
-end)
-task.spawn(function()
-while wait() do
+if workspace.Game.Effects.Tickets.Ticket5.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket5.HumanoidRootPart.CFrame
 end
-end)
-task.spawn(function()
-while wait() do
+if workspace.Game.Effects.Tickets.Ticket6.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket6.HumanoidRootPart.CFrame
 end
-end)
-task.spawn(function()
-while wait() do
+if workspace.Game.Effects.Tickets.Ticket7.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket7.HumanoidRootPart.CFrame
 end
-end)
-task.spawn(function()
-while wait() do
+if workspace.Game.Effects.Tickets.Ticket8.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket8.HumanoidRootPart.CFrame
 end
-end)
-task.spawn(function()
-while wait() do
+if workspace.Game.Effects.Tickets.Ticket9.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket9.HumanoidRootPart.CFrame
 end
-end)
-task.spawn(function()
-while wait() do
+if workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart.CFrame
 end
-end)
-end)
-HolidayEvent:CreateToggle("Attribute Farm", function(v)
-_G.AttributeFarm = v
-task.spawn(function()
-while _G.AttributeFarm and wait(0.35) do
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(500, 2000, 500)
-local part = Instance.new("Part", workspace)
-part.Transparency = 0
-part.Anchored = true
-part.CFrame = CFrame.new(500, 1998, 500)
-part.Size = Vector3.new(40, 1, 40)
-wait(0.2)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-500, 2000, -500)
-local part = Instance.new("Part", workspace)
-part.Transparency = 0
-part.Anchored = true
-part.CFrame = CFrame.new(-500, 1998, -500)
-part.Size = Vector3.new(40, 1, 40)
-end
-end)
 end)
