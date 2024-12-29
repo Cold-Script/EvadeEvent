@@ -1,1 +1,53 @@
-# EvadeEvent
+setfpscap(15)
+wait(1)
+setfpscap(100000)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.CFrame
+end
+end)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket2.HumanoidRootPart.CFrame
+end
+end)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket3.HumanoidRootPart.CFrame
+end
+end)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket4.HumanoidRootPart.CFrame
+end
+end)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket5.HumanoidRootPart.CFrame
+end
+end)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket6.HumanoidRootPart.CFrame
+end
+end)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket7.HumanoidRootPart.CFrame
+end
+end)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket8.HumanoidRootPart.CFrame
+end
+end)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket9.HumanoidRootPart.CFrame
+end
+end)
+task.spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart.CFrame
+end
+end)
