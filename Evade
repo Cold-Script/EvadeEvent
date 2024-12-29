@@ -58,8 +58,18 @@ _G.AttributeFarm = v
 task.spawn(function()
 while _G.AttributeFarm and wait(0.35) do
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(500, 2000, 500)
+local part = Instance.new("Part", workspace)
+part.Transparency = 0
+part.Anchored = true
+part.CFrame = CFrame.new(500, 1998, 500)
+part.Size = Vector3.new(40, 1, 40)
 wait(0.2)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-500, 2000, -500)
+local part = Instance.new("Part", workspace)
+part.Transparency = 0
+part.Anchored = true
+part.CFrame = CFrame.new(-500, 1998, -500)
+part.Size = Vector3.new(40, 1, 40)
 end
 end)
 end)
