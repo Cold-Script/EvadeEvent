@@ -1,7 +1,7 @@
 local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
 local Window = Library:NewWindow("Evade | v1.2")
 local HolidayEvent = Window:NewSection("Holiday Event")
-HolidayEvent:Button("Claim Ticket", function()
+HolidayEvent:CreateButton("Claim Ticket", function()
 task.spawn(function()
 while wait() do
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.CFrame
@@ -53,7 +53,7 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effe
 end
 end)
 end)
-HolidayEvent:Toggle("Attribute Farm", function(v)
+HolidayEvent:CreateToggle("Attribute Farm", function(v)
 _G.AttributeFarm = v
 task.spawn(function()
 while _G.AttributeFarm and wait(0.35) do
