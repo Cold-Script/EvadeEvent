@@ -1,6 +1,7 @@
-setfpscap(15)
-wait(1)
-setfpscap(100000)
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+local Window = Library:NewWindow("Evade | v1.2")
+local HolidayEvent = Window:NewSection("Holiday Event")
+HolidayEvent:Button("Claim Ticket", function()
 task.spawn(function()
 while wait() do
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.CFrame
@@ -50,4 +51,15 @@ task.spawn(function()
 while wait() do
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart.CFrame
 end
+end)
+end)
+HolidayEvent:Toggle("Attribute Farm", function(v)
+_G.AttributeFarm = v
+task.spawn(function()
+while _G.AttributeFarm and wait(0.35) do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(500, 2000, 500)
+wait(0.2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-500, 2000, -500)
+end
+end)
 end)
