@@ -1,11 +1,14 @@
+setfpscap(10000)
+print('Godmode all')
+if game.Players.LocalPlayer.Character.HumanoidRootPart and not game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
 game:GetService("RunService").RenderStepped:Connect(function()
+if not game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(500, 200, 500) then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(500, 200, 500)
+end
 if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(500, 200, 500) then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-500, 200, -500)
 end
 if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(-500, 200, -500) then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1100, 200, 270)
-end
-if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(1100, 200, 270) then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(500, 200, 500)
 end
 end)
@@ -40,4 +43,20 @@ end
 if workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart.CFrame
 end
+if workspace.Game.Effects.Tickets.Ticket11.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket11.HumanoidRootPart.CFrame
+end
+if workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart.CFrame
+end
+if workspace.Game.Effects.Tickets.Ticket13.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket13.HumanoidRootPart.CFrame
+end
+if workspace.Game.Effects.Tickets.Ticket14.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket14.HumanoidRootPart.CFrame
+end
+if workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart.CFrame
+end
 end)
+end
