@@ -62,10 +62,10 @@ end})
 Tabs.Main:AddSection({"Players"})
 _G.ToggleSpeed = 1
 Tabs.Main:AddSlider({
-  Name = "Speed Boots",
-  Description = "Select a Boots",
+  Name = "Speed Boost",
+  Description = "Select a SpeedBoost",
   Min = 1,
-  Max = 25,
+  Max = 500,
   Increase = 1,
   Default = 1,
   Callback = function(value)
