@@ -59,6 +59,8 @@ Tabs.Main:AddToggle({
 	Callback=function(value)
 _G.AutoTickets = value
 while _G.AutoTickets do wait(1)
+spawn(function()
+pcall(function()
 if workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.CFrame
 workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
@@ -119,6 +121,8 @@ if workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart.CFrame
 workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
 end
+end)
+end)
 end
 end})
 Tabs.Main:AddButton({
@@ -128,6 +132,65 @@ Tabs.Main:AddButton({
 game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -10000, 0)
 end})
 Tabs.Main:AddSection({"Players"})
+Tabs.Main:AddSlider({
+  Name = "Fly speed",
+  Description = "Select a Speed Fly",
+  Min = 1,
+  Max = 80,
+  Increase = 1,
+  Default = 1,
+  Callback = function(value)
+_G.SetSpeedFly = value
+end})
+Tabs.Main:AddToggle({
+	Name = "Fly",
+	Description = "Fly",
+	Callback=function(value)
+_G.StartFly = value
+if _G.StartFly == false then
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+end
+end
+while _G.StartFly do
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.CFrame = Workspace.CurrentCamera.CoordinateFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X > 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X < 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z > 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z < 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+end
+elseif game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") == nil and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") == nil then
+local bv = Instance.new("BodyVelocity")
+local bg = Instance.new("BodyGyro")
+
+bv.Name = "VelocityHandler"
+bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bv.MaxForce = Vector3.new(0,0,0)
+bv.Velocity = Vector3.new(0,0,0)
+
+bg.Name = "GyroHandler"
+bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bg.MaxTorque = Vector3.new(0,0,0)
+bg.P = 1000
+bg.D = 50
+end
+task.wait()
+end
+end})
 _G.ToggleSpeed = 1
 Tabs.Main:AddSlider({
   Name = "Speed Boost",
@@ -138,7 +201,7 @@ Tabs.Main:AddSlider({
   Default = 1,
   Callback = function(value)
 _G.ToggleSpeed = value			
-while _G.ToggleSpeed do wait(1)			
+while _G.ToggleSpeed do wait(3)			
 pcall(function()	
 if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
 game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * _G.ToggleSpeed)
@@ -146,31 +209,3 @@ end
 end)
 end
 end})	
-Tabs.Main:AddSection({"Auto"})
-Tabs.Main:AddToggle({
-	Name = "Auto Whistle",
-	Description = "Auto Whistle",
-	Callback = function(value)
-_G.Whi = value
-while _G.Whi do wait()
-spawn(function()
-pcall(function()
-game:GetService("Players").LocalPlayer.PlayerScripts.Events.KeybindUsed:Fire("Whistle", true)
-game:GetService("ReplicatedStorage").Events.Whistle:FireServer()			
-end)
-end)
-end        
-end})
-Tabs.Main:AddToggle({
-	Name = "Auto Drink Cola",
-	Description = "Drink Cola (Can Complete Quest)",
-	Callback = function(value)
-_G.Drink = value
-while _G.Drink do wait()
-spawn(function()
-pcall(function()
-game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
-end)
-end)
-end        
-end})
