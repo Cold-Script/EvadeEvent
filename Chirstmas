@@ -53,9 +53,77 @@ end)
 end)
 end
 end})
+Tabs.Main:AddToggle({
+	Name = "Tickets Farm",
+	Description = "Teleport to Tickets",
+	Callback=function(value)
+_G.AutoTickets = value
+while _G.AutoTickets do wait(1)
+if workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket2.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket2.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket2.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket3.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket3.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket3.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket4.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket4.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket4.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket5.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket5.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket5.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket6.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket6.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket6.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket7.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket7.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket7.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket8.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket8.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket8.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket9.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket9.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket9.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket11.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket11.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket11.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket13.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket13.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket14.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket14.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket14.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+if workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart.CFrame
+workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+end
+end
+end})
 Tabs.Main:AddButton({
-        Name = "Teleport Map",
-        Description = "Teleport map in play",
+        Name = "Random Teleport Map",
+        Description = "Random Teleport map in gameplay",
         Callback = function()
 game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -10000, 0)
 end})
@@ -70,13 +138,13 @@ Tabs.Main:AddSlider({
   Default = 1,
   Callback = function(value)
 _G.ToggleSpeed = value			
-game:GetService("RunService").RenderStepped:Connect(function()			
+while _G.ToggleSpeed do wait(1)			
 pcall(function()	
 if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * _G.ToggleSpeed/100)
+game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * _G.ToggleSpeed)
 end
 end)
-end)
+end
 end})	
 Tabs.Main:AddSection({"Auto"})
 Tabs.Main:AddToggle({
