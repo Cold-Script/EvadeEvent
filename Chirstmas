@@ -1,0 +1,108 @@
+local redzlib = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
+local Window = redzlib:MakeWindow({"WinterClaws | Evade ", "version 1.2", "testando-redzLibv5.json"})
+Window:AddMinimizeButton({
+Button = { Image = "rbxassetid://1049060234", BackgroundTransparency = 0.25 },
+Corner = { CornerRadius = UDim.new(0, 5) }
+})
+local Tabs = {
+Main = Window:MakeTab({"Main", "Home"}),
+}
+Tabs.Main:AddSection({"Farm"})
+_G.C1 = -5000
+Tabs.Main:AddDropdown({
+        Name = "Position X",
+	Description = "Position X",
+        Options = {"-5000", "-2500", "0", "2500", "5000"},
+        MultiSelect = false,
+        Default = {"-5000"},
+	Callback = function(value)
+_G.C1 = value			
+end})
+_G.C2 = 3500
+Tabs.Main:AddDropdown({
+        Name = "Position Y",
+	Description = "Position Y",
+        Options = {"3500", "7000", "10000"},
+        MultiSelect = false,
+        Default = {"3500"},
+	Callback = function(value)
+_G.C2 = value			
+end})
+_G.C3 = -5000
+Tabs.Main:AddDropdown({
+        Name = "Position Z",
+	Description = "Position Z",
+        Options = {"-5000", "-2500", "0", "2500", "5000"},
+        MultiSelect = false,
+        Default = {"-5000"},
+	Callback = function(value)
+_G.C3 = value			
+end})
+Tabs.Main:AddToggle({
+	Name = "AFK Farm",
+	Description = "Teleport Far to AFK",
+	Callback=function(value)
+_G.AFK = value
+while _G.AFK do wait(0.3)
+spawn(function()
+pcall(function()
+game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
+wait(0.25)
+game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(-50000, _G.C2, -50000)
+end)
+end)
+end
+end})
+Tabs.Main:AddButton({
+        Name = "Teleport Map",
+        Description = "Teleport map in play",
+        Callback = function()
+game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -10000, 0)
+end})
+Tabs.Main:AddSection({"Players"})
+_G.ToggleSpeed = 1
+Tabs.Main:AddSlider({
+  Name = "Speed Boots",
+  Description = "Select a Boots",
+  Min = 1,
+  Max = 25,
+  Increase = 1,
+  Default = 1,
+  Callback = function(value)
+_G.ToggleSpeed = value			
+game:GetService("RunService").RenderStepped:Connect(function()			
+pcall(function()	
+if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * _G.ToggleSpeed/100)
+end
+end)
+end)
+end})	
+Tabs.Main:AddSection({"Auto"})
+Tabs.Main:AddToggle({
+	Name = "Auto Whistle",
+	Description = "Auto Whistle",
+	Callback = function(value)
+_G.Whi = value
+while _G.Whi do wait()
+spawn(function()
+pcall(function()
+game:GetService("Players").LocalPlayer.PlayerScripts.Events.KeybindUsed:Fire("Whistle", true)
+game:GetService("ReplicatedStorage").Events.Whistle:FireServer()			
+end)
+end)
+end        
+end})
+Tabs.Main:AddToggle({
+	Name = "Auto Drink Cola",
+	Description = "Drink Cola (Can Complete Quest)",
+	Callback = function(value)
+_G.Drink = value
+while _G.Drink do wait()
+spawn(function()
+pcall(function()
+game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
+end)
+end)
+end        
+end})
