@@ -18,13 +18,13 @@ Tabs.Main:AddDropdown({
 	Callback = function(value)
 _G.C1 = value			
 end})
-_G.C2 = 3500
+_G.C2 = 500
 Tabs.Main:AddDropdown({
         Name = "Position Y",
 	Description = "Position Y",
-        Options = {"3500", "7000", "10000"},
+        Options = {"500", "1000", "1500"},
         MultiSelect = false,
-        Default = {"3500"},
+        Default = {"500"},
 	Callback = function(value)
 _G.C2 = value			
 end})
@@ -53,12 +53,10 @@ end)
 end)
 end
 end})
-Tabs.Main:AddToggle({
-	Name = "Tickets Farm",
-	Description = "Teleport to Tickets",
-	Callback=function(value)
-_G.AutoTickets = value
-while _G.AutoTickets do wait(1)
+Tabs.Main:AddButton({
+        Name = "Teleport Tickets",
+        Description = "Teleport to Tickets",
+        Callback = function()
 spawn(function()
 pcall(function()
 if workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart then
@@ -123,7 +121,6 @@ workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart.Size = Vector3.new(50, 
 end
 end)
 end)
-end
 end})
 Tabs.Main:AddButton({
         Name = "Random Teleport Map",
@@ -136,7 +133,7 @@ Tabs.Main:AddSlider({
   Name = "Fly speed",
   Description = "Select a Speed Fly",
   Min = 1,
-  Max = 80,
+  Max = 100,
   Increase = 1,
   Default = 1,
   Callback = function(value)
@@ -191,21 +188,73 @@ end
 task.wait()
 end
 end})
-_G.ToggleSpeed = 1
-Tabs.Main:AddSlider({
-  Name = "Speed Boost",
-  Description = "Select a SpeedBoost",
-  Min = 1,
-  Max = 500,
-  Increase = 1,
-  Default = 1,
-  Callback = function(value)
-_G.ToggleSpeed = value			
-while _G.ToggleSpeed do wait(3)			
-pcall(function()	
-if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * _G.ToggleSpeed)
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+for _,v in next,game.Players.LocalPlayer.Character:GetDescendants() do 
+if v:IsA("BasePart", v) and _G.Noclip then 
+v.CanCollide = not _G.Noclip
+end
 end
 end)
+end)
+Tabs.Main:AddToggle({
+	Name = "Noclip",
+	Description = "Noclip Players",	
+	Callback = function(value)
+_G.Noclip = value
+end})
+Tabs.Main:AddSection({"Miscellaneous"})
+Tabs.Main:AddToggle({
+	Name = "Cant Collide Glass",
+	Description = "Cant Collide Glass",
+	Callback = function(value)
+_G.DeleteGlass = value
+if _G.DeleteGlass then
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "Glass" then
+v.CanCollide = false
 end
-end})	
+end
+CantCollideGlass = workspace.Game.Map.Parts.ChildAdded:Connect(function()
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "Glass" then
+v.CanCollide = false
+end
+end
+end)
+else
+CantCollideGlass:Disconnect()
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "Glass" then
+v.CanCollide = true
+end
+end
+end
+end})
+Tabs.Main:AddToggle({
+	Name = "Blur Glass",
+	Description = "Cant Collide Glass",
+	Callback = function(value)
+_G.BlurGlass = value
+if _G.BlurGlass then
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "Glass" then
+v.Transparency = 1
+end
+end
+BlurGlass = workspace.Game.Map.Parts.ChildAdded:Connect(function()
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "Glass" then
+v.Transparency = 1
+end
+end
+end)
+else
+CantCollideGlass:Disconnect()
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "Glass" then
+v.Transparency = 0
+end
+end
+end
+end})
