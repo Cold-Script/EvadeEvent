@@ -61,7 +61,7 @@ _G.AutoTickets = value
 if value then
 part = Instance.new("Part", workspace)
 			part.Anchored = true
-			part.CFrame = CFrame.new(100, 496, 100)
+			part.CFrame = CFrame.new(100, _G.C2 - 4, 100)
 		end
 		while task.wait(0.5) and _G.AutoTickets do
 			if not value then
@@ -73,7 +73,7 @@ part = Instance.new("Part", workspace)
 			if hrp == nil then
 				return
 			end
-			hrp.CFrame = CFrame.new(100, 500, 100)
+			hrp.CFrame = CFrame.new(100, _G.C2, 100)
 			for i, v in next, tickets:GetDescendants() do
 				if v.IsA(v, "BasePart") and v.Name == "HumanoidRootPart" then
 					hrp.CFrame = CFrame.new(v.Position)
@@ -147,39 +147,18 @@ end
 task.wait()
 end
 end})
-game:GetService("RunService").RenderStepped:Connect(function()
+Tabs.Main:AddToggle({
+	Name = "Walk on downed",
+	Description = "Walk on down",
+        Callback = function(value)
+_G.WalkDown = value
+spawn(function()
 pcall(function()
-for _,v in next,game.Players.LocalPlayer.Character:GetDescendants() do 
-if v:IsA("BasePart", v) and _G.Noclip then 
-v.CanCollide = not _G.Noclip
-end
+while _G.WalkDown do wait(1)
+workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):SetAttribute('Downed', not _G.WalkDown)
 end
 end)
 end)
-Tabs.Main:AddToggle({
-	Name = "Noclip",
-	Description = "Noclip Players",	
-	Callback = function(value)
-_G.Noclip = value
-end})
-Tabs.Main:AddToggle({
-	Name = "Auto Respawn",
-	Description = "Respawn on down",	
-	Callback = function(value)
-_G.Respawning = value
-		while task.wait(1) and _G.Respawning do
-			if not _G.Respawning then
-				break
-			end
-			local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-			local stats = char:WaitForChild("StatChanges", 3)
-			if stats == nil then
-				return
-			end
-			if stats:FindFirstChild("Speed") and stats:FindFirstChild("Speed"):FindFirstChild("Downed") then
-				game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-			end
-		end
 end})
 Tabs.Main:AddSection({"Miscellaneous"})
 Tabs.Main:AddToggle({
