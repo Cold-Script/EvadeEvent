@@ -1,7 +1,7 @@
 local redzlib = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
 local Window = redzlib:MakeWindow({"WinterClaws | Evade ", "version 1.2", "testando-redzLibv5.json"})
 Window:AddMinimizeButton({
-Button = { Image = "rbxassetid://496077816", BackgroundColor = Color3.fromRGB(255,255,255), BackgroundTransparency = 0.25 },
+Button = { Image = "rbxassetid://496077816", BackgroundColor3 = Color3.fromRGB(255,255,255), BackgroundTransparency = 0.25 },
 Corner = { CornerRadius = UDim.new(0, 5) }
 })
 local Tabs = {
