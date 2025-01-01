@@ -6,6 +6,7 @@ Corner = { CornerRadius = UDim.new(0, 5) }
 })
 local Tabs = {
 Main = Window:MakeTab({"Main", "Home"}),
+Visual = Window:MakeTab({"Visual", "Camera"})
 }
 Tabs.Main:AddSection({"Farm"})
 _G.C1 = -5000
@@ -59,9 +60,9 @@ Tabs.Main:AddToggle({
 	Callback=function(value)
 _G.AutoTickets = value
 if value then
-part = Instance.new("Part", workspace)
+local part = Instance.new("Part", workspace)
 			part.Anchored = true
-			part.CFrame = CFrame.new(100, _G.C2 - 4, 100)
+			part.CFrame = CFrame.new(100, 996, 100)
 		end
 		while task.wait(0.5) and _G.AutoTickets do
 			if not value then
@@ -73,7 +74,7 @@ part = Instance.new("Part", workspace)
 			if hrp == nil then
 				return
 			end
-			hrp.CFrame = CFrame.new(100, _G.C2, 100)
+			hrp.CFrame = CFrame.new(100, 1000, 100)
 			for i, v in next, tickets:GetDescendants() do
 				if v.IsA(v, "BasePart") and v.Name == "HumanoidRootPart" then
 					hrp.CFrame = CFrame.new(v.Position)
@@ -215,3 +216,32 @@ end
 end
 end
 end})
+Tabs.Main:AddSection({"Anti"})
+Tabs.Main:AddToggle({
+	Name = "Anti-Killbricks",
+	Description = "Dont Damage Killbricks",
+	Callback = function(value)
+_G.AntiKillbricks = value
+if _G.AntiKillbricks then
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "Killbrick" then
+v.CanTouch = false
+end
+end
+AntiKillbrick = workspace.Game.Map.Parts.ChildAdded:Connect(function()
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "Killbrick" then
+v.CanTouch = false
+end
+end
+end)
+else
+AntiKillbrick:Disconnect()
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "Killbrick" then
+v.CanTouch = false
+end
+end
+end
+end})
+Tabs.Visual:AddSection({"ESP"})
