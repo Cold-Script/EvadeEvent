@@ -276,7 +276,7 @@ while wait(1) do
 if _G.NextbotsESP then
 local GamePlayers = workspace.Game.Players
 for i, v in pairs(GamePlayers:GetChildren()) do
-if not game.Players:FindFirstChild(v.Name) then
+if not game.Players:FindFirstChild(v.Name) and not v.HumanoidRootPart:FindFirstChild("Nextbots_ESP") then
 Cylinder(v.HumanoidRootPart, v.Name, "Nextbots_ESP")
 end
 end
@@ -293,22 +293,19 @@ Tabs.Visual:AddToggle({
 	Name = "Players ESP",
 	Description = "Players ESP",
 	Callback = function(value)
-if value then
-local GamePlayers = workspace.Game.Players
-for _,v in pairs(GamePlayers:GetDescendants()) do
+_G.PlayerESP = value
+while wait(1) do
+if _G.PlayersESP then
+for _,v in pairs(workspace.Game.Players:GetDescendants()) do
+if not v:FindFirstChild("Players_ESP") then
 Highlight(v, "Players_ESP")
 end
-PlayersESP = workspace.Game.ChildAdded:Connect(function()
-local GamePlayers = workspace.Game.Players
-for _,v in pairs(GamePlayers:GetDescendants()) do
-Highlight(v, "Players_ESP")
-end
-end)
+end		
 else
-PlayersESP:Disconnect()
 for i, v in pairs(workspace:GetDescendants()) do
 if v.Name == "Players_ESP" then
 v:Destroy()
+end
 end
 end
 end
