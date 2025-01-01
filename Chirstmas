@@ -1,7 +1,7 @@
 local redzlib = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
 local Window = redzlib:MakeWindow({"WinterClaws | Evade ", "version 1.2", "testando-redzLibv5.json"})
 Window:AddMinimizeButton({
-Button = { Image = "rbxassetid://1049060234", BackgroundTransparency = 0.25 },
+Button = { Image = "rbxassetid://496077816", BackgroundColor = Color3.fromRGB(255,255,255), BackgroundTransparency = 0.25 },
 Corner = { CornerRadius = UDim.new(0, 5) }
 })
 local Tabs = {
@@ -43,7 +43,7 @@ Tabs.Main:AddToggle({
 	Description = "Teleport Far to AFK",
 	Callback=function(value)
 _G.AFK = value
-while _G.AFK do wait(0.3)
+while _G.AFK and not _G.AutoTickets do wait(0.3)
 spawn(function()
 pcall(function()
 game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
@@ -53,74 +53,33 @@ end)
 end)
 end
 end})
-Tabs.Main:AddButton({
-        Name = "Teleport Tickets",
-        Description = "Teleport to Tickets",
-        Callback = function()
-spawn(function()
-pcall(function()
-if workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket1.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket2.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket2.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket2.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket3.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket3.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket3.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket4.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket4.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket4.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket5.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket5.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket5.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket6.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket6.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket6.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket7.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket7.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket7.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket8.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket8.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket8.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket9.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket9.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket9.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket10.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket11.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket11.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket11.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket13.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket13.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket12.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket14.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket14.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket14.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-if workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart.CFrame
-workspace.Game.Effects.Tickets.Ticket15.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-end
-end)
-end)
+Tabs.Main:AddToggle({
+	Name = "Auto Tickets Farm [BETA]",
+	Description = "Auto Claim Tickets",
+	Callback=function(value)
+_G.AutoTickets = value
+if value then
+part = Instance.new("Part", workspace)
+			part.Anchored = true
+			part.CFrame = CFrame.new(100, 496, 100)
+		end
+		while task.wait(0.5) and _G.AutoTickets do
+			if not value then
+				break
+			end
+			local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+			local tickets = workspace.Game.Effects.Tickets
+			local hrp = char:WaitForChild("HumanoidRootPart", 3)
+			if hrp == nil then
+				return
+			end
+			hrp.CFrame = CFrame.new(100, 500, 100)
+			for i, v in next, tickets:GetDescendants() do
+				if v.IsA(v, "BasePart") and v.Name == "HumanoidRootPart" then
+					hrp.CFrame = CFrame.new(v.Position)
+				end
+			end
+		end
 end})
 Tabs.Main:AddButton({
         Name = "Random Teleport Map",
@@ -202,6 +161,25 @@ Tabs.Main:AddToggle({
 	Description = "Noclip Players",	
 	Callback = function(value)
 _G.Noclip = value
+end})
+Tabs.Main:AddToggle({
+	Name = "Auto Respawn",
+	Description = "Respawn on down",	
+	Callback = function(value)
+_G.Respawning = value
+		while task.wait(1) and _G.Respawning do
+			if not _G.Respawning then
+				break
+			end
+			local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+			local stats = char:WaitForChild("StatChanges", 3)
+			if stats == nil then
+				return
+			end
+			if stats:FindFirstChild("Speed") and stats:FindFirstChild("Speed"):FindFirstChild("Downed") then
+				game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+			end
+		end
 end})
 Tabs.Main:AddSection({"Miscellaneous"})
 Tabs.Main:AddToggle({
