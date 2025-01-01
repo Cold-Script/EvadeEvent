@@ -11,7 +11,7 @@ Adornment.Adornee = child
 Adornment.Name = title
 Adornment.Parent = child
 end
-local function Highlight(child, name, title)
+local function Highlight(child, title)
 local Highlight = Instance.new('Highlight', child)
 Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
 Highlight.FillColor = Color3.fromRGB(0, 255, 0)
@@ -271,26 +271,20 @@ Tabs.Visual:AddToggle({
 	Name = "Nextbots ESP",
 	Description = "Nextbots ESP",
 	Callback = function(value)
-if value then
+_G.NextbotsESP = value
+while wait(1) do
+if _G.NextbotsESP then
 local GamePlayers = workspace.Game.Players
 for i, v in pairs(GamePlayers:GetChildren()) do
 if not game.Players:FindFirstChild(v.Name) then
 Cylinder(v.HumanoidRootPart, v.Name, "Nextbots_ESP")
 end
 end
-BotsESP = workspace.Game.Players.ChildAdded:Connect(function()
-local GamePlayers = workspace.Game.Players
-for i, v in pairs(GamePlayers:GetChildren()) do
-if not game.Players:FindFirstChild(v.Name) then
-Cylinder(v.HumanoidRootPart, v.Name, "Nextbots_ESP")
-end
-end
-end)
 else
-BotsESP:Disconnect()
 for i, v in pairs(workspace:GetDescendants()) do
 if v.Name == "Nextbots_ESP" then
 v:Destroy()
+end
 end
 end
 end
@@ -301,13 +295,13 @@ Tabs.Visual:AddToggle({
 	Callback = function(value)
 if value then
 local GamePlayers = workspace.Game.Players
-for i, v in pairs(GamePlayers:GetDescendants()) do
-Highlight(v, v.Name, "Players_ESP")
+for _,v in pairs(GamePlayers:GetDescendants()) do
+Highlight(v, "Players_ESP")
 end
-PlayersESP = workspace.Game.Players.ChildAdded:Connect(function()
+PlayersESP = workspace.Game.ChildAdded:Connect(function()
 local GamePlayers = workspace.Game.Players
-for i, v in pairs(GamePlayers:GetDescendants()) do
-Highlight(v, v.Name, "Players_ESP")
+for _,v in pairs(GamePlayers:GetDescendants()) do
+Highlight(v, "Players_ESP")
 end
 end)
 else
