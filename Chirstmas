@@ -295,3 +295,27 @@ end
 end
 end
 end})
+Tabs.Visual:AddToggle({
+	Name = "Players ESP",
+	Description = "Players ESP",
+	Callback = function(value)
+if value then
+local GamePlayers = workspace.Game.Players
+for i, v in pairs(GamePlayers:GetDescendants()) do
+Highlight(v, v.Name, "Players_ESP")
+end
+PlayersESP = workspace.Game.Players.ChildAdded:Connect(function()
+local GamePlayers = workspace.Game.Players
+for i, v in pairs(GamePlayers:GetDescendants()) do
+Highlight(v, v.Name, "Players_ESP")
+end
+end)
+else
+PlayersESP:Disconnect()
+for i, v in pairs(workspace:GetDescendants()) do
+if v.Name == "Players_ESP" then
+v:Destroy()
+end
+end
+end
+end})
