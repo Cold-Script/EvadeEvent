@@ -1,3 +1,25 @@
+local function Cylinder(child, name, title)
+local Adornment = Instance.new("CylinderHandleAdornment")
+Adornment.Height = child.Size.Y * 2
+Adornment.Radius = child.Size.X * 2
+Adornment.CFrame = CFrame.new(0,0,0) * CFrame.Angles(math.rad(90), 0, 0)
+Adornment.Color3 = Color3.fromRGB(255, 0, 0)
+Adornment.Transparency = 0.65
+Adornment.AlwaysOnTop = true
+Adornment.ZIndex = 10
+Adornment.Adornee = child
+Adornment.Name = title
+Adornment.Parent = child
+end
+local function Highlight(child, name, title)
+local Highlight = Instance.new('Highlight', child)
+Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+Highlight.FillColor = Color3.fromRGB(0, 255, 0)
+Highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+Highlight.FillTransparency = 0.75
+Highlight.OutlineTransparency = 0
+Highlight.Name = title
+end
 local redzlib = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
 local Window = redzlib:MakeWindow({"WinterClaws | Evade ", "version 1.2", "testando-redzLibv5.json"})
 Window:AddMinimizeButton({
@@ -245,3 +267,31 @@ end
 end
 end})
 Tabs.Visual:AddSection({"ESP"})
+Tabs.Visual:AddToggle({
+	Name = "Nextbots ESP",
+	Description = "Nextbots ESP",
+	Callback = function(value)
+if value then
+local GamePlayers = workspace.Game.Players
+for i, v in pairs(GamePlayers:GetChildren()) do
+if not game.Players:FindFirstChild(v.Name) then
+Cylinder(v.HumanoidRootPart, v.Name, "Nextbots_ESP")
+end
+end
+BotsESP = workspace.Game.Players.ChildAdded:Connect(function()
+local GamePlayers = workspace.Game.Players
+for i, v in pairs(GamePlayers:GetChildren()) do
+if not game.Players:FindFirstChild(v.Name) then
+Cylinder(v.HumanoidRootPart, v.Name, "Nextbots_ESP")
+end
+end
+end)
+else
+BotsESP:Disconnect()
+for i, v in pairs(workspace:GetDescendants()) do
+if v.Name == "Nextbots_ESP" then
+v:Destroy()
+end
+end
+end
+end})
