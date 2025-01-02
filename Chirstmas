@@ -21,7 +21,7 @@ Highlight.OutlineTransparency = 0
 Highlight.Name = title
 end
 local redzlib = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
-local Window = redzlib:MakeWindow({"WinterClaws | Evade ", "version 1.2", "testando-redzLibv5.json"})
+local Window = redzlib:MakeWindow({"WinterClaws | Evade ", "Version 1.2", "testando-redzLibv5.json"})
 Window:AddMinimizeButton({
 Button = { Image = "rbxassetid://496077816", BackgroundColor3 = Color3.fromRGB(0,0,0), BackgroundTransparency = 0.25 },
 Corner = { CornerRadius = UDim.new(0, 5) }
