@@ -86,7 +86,7 @@ local part = Instance.new("Part", workspace)
 			part.Anchored = true
 			part.CFrame = CFrame.new(100, 996, 100)
 		end
-		while task.wait(0.5) and _G.AutoTickets do
+		while task.wait(0.25) and _G.AutoTickets do
 			if not value then
 				break
 			end
@@ -188,8 +188,10 @@ Tabs.Main:AddToggle({
 	Description = "Auto Respawn",
         Callback = function(value)
 _G.AutoRespawn = value
-while _G.AutoRespawn and workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):GetAttribute('Downed') do wait(1)
+while _G.AutoRespawn do wait(0.5)
+if workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):GetAttribute('Downed') then
 game:GetService("ReplicatedStorage").Events.Player.ChangePlayerMode:FireServer(true)
+end
 end
 end})
 Tabs.Main:AddButton({
@@ -198,61 +200,7 @@ Tabs.Main:AddButton({
         Callback = function()
 game:GetService("ReplicatedStorage").Events.Player.ChangePlayerMode:FireServer(true)
 end})
-Tabs.Main:AddSection({"Miscellaneous"})
-Tabs.Main:AddToggle({
-	Name = "Cant Collide Glass",
-	Description = "Cant Collide Glass",
-	Callback = function(value)
-_G.DeleteGlass = value
-if _G.DeleteGlass then
-for _,v in pairs(workspace.Game.Map:GetDescendants()) do
-if v.Name == "Glass" then
-v.CanCollide = false
-end
-end
-CantCollideGlass = workspace.Game.Map.Parts.ChildAdded:Connect(function()
-for _,v in pairs(workspace.Game.Map:GetDescendants()) do
-if v.Name == "Glass" then
-v.CanCollide = false
-end
-end
-end)
-else
-CantCollideGlass:Disconnect()
-for _,v in pairs(workspace.Game.Map:GetDescendants()) do
-if v.Name == "Glass" then
-v.CanCollide = true
-end
-end
-end
-end})
-Tabs.Main:AddToggle({
-	Name = "Blur Glass",
-	Description = "Cant Collide Glass",
-	Callback = function(value)
-_G.BlurGlass = value
-if _G.BlurGlass then
-for _,v in pairs(workspace.Game.Map:GetDescendants()) do
-if v.Name == "Glass" then
-v.Transparency = 1
-end
-end
-BlurGlass = workspace.Game.Map.Parts.ChildAdded:Connect(function()
-for _,v in pairs(workspace.Game.Map:GetDescendants()) do
-if v.Name == "Glass" then
-v.Transparency = 1
-end
-end
-end)
-else
-CantCollideGlass:Disconnect()
-for _,v in pairs(workspace.Game.Map:GetDescendants()) do
-if v.Name == "Glass" then
-v.Transparency = 0
-end
-end
-end
-end})
+
 Tabs.Main:AddSection({"Anti"})
 Tabs.Main:AddToggle({
 	Name = "Anti-Killbricks",
@@ -290,14 +238,6 @@ while value do wait(1)
 game:GetService("ReplicatedStorage").Events.Character.Whistle:FireServer(true)
 end
 end})
-Tabs.Main:AddToggle({
-	Name = "Auto Cola",
-	Description = "Auto Drink Cola",
-	Callback = function(value)
-while value do wait(1)
-game:GetService("ReplicatedStorage").Events.Character.UsePerk:FireServer("Cola")
-end
-end})
 Tabs.Visual:AddSection({"ESP"})
 Tabs.Visual:AddToggle({
 	Name = "Nextbots ESP",
@@ -325,10 +265,10 @@ Tabs.Visual:AddToggle({
 	Name = "Players ESP",
 	Description = "Players ESP",
 	Callback = function(value)
-_G.PlayerESP = value
+_G.PlayersESP = value
 while wait(1) do
 if _G.PlayersESP then
-for _,v in pairs(workspace.Game.Players:GetDescendants()) do
+for _,v in pairs(workspace.Game.Players:GetChildren()) do
 Highlight(v, "Players_ESP")
 end		
 else
