@@ -1,4 +1,4 @@
-local function Cylinder(child, name, title)
+local function Cylinder(child, title)
 local Adornment = Instance.new("CylinderHandleAdornment")
 Adornment.Height = child.Size.Y * 2
 Adornment.Radius = child.Size.X * 2
@@ -23,7 +23,7 @@ end
 local redzlib = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
 local Window = redzlib:MakeWindow({"WinterClaws | Evade ", "version 1.2", "testando-redzLibv5.json"})
 Window:AddMinimizeButton({
-Button = { Image = "rbxassetid://496077816", BackgroundColor3 = Color3.fromRGB(255,255,255), BackgroundTransparency = 0.25 },
+Button = { Image = "rbxassetid://496077816", BackgroundColor3 = Color3.fromRGB(0,0,0), BackgroundTransparency = 0.25 },
 Corner = { CornerRadius = UDim.new(0, 5) }
 })
 local Tabs = {
@@ -177,11 +177,26 @@ Tabs.Main:AddToggle({
 _G.WalkDown = value
 spawn(function()
 pcall(function()
-while _G.WalkDown do wait(1)
-workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):SetAttribute('Downed', not _G.WalkDown)
+while _G.WalkDown and workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):GetAttribute('Downed') do wait(1)
+workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):SetAttribute('Downed', false)
 end
 end)
 end)
+end})
+Tabs.Main:AddToggle({
+	Name = "Auto Respawn",
+	Description = "Auto Respawn",
+        Callback = function(value)
+_G.AutoRespawn = value
+while _G.AutoRespawn and workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):GetAttribute('Downed') do wait(1)
+game:GetService("ReplicatedStorage").Events.Player.ChangePlayerMode:FireServer(true)
+end
+end})
+Tabs.Main:AddButton({
+        Name = "Respawn",
+        Description = "Respawn",
+        Callback = function()
+game:GetService("ReplicatedStorage").Events.Player.ChangePlayerMode:FireServer(true)
 end})
 Tabs.Main:AddSection({"Miscellaneous"})
 Tabs.Main:AddToggle({
@@ -266,6 +281,23 @@ end
 end
 end
 end})
+Tabs.Main:AddSection({"Auto"})
+Tabs.Main:AddToggle({
+	Name = "Auto Whistle",
+	Description = "Whistle Auto",
+	Callback = function(value)
+while value do wait(1)
+game:GetService("ReplicatedStorage").Events.Character.Whistle:FireServer(true)
+end
+end})
+Tabs.Main:AddToggle({
+	Name = "Auto Cola",
+	Description = "Auto Drink Cola",
+	Callback = function(value)
+while value do wait(1)
+game:GetService("ReplicatedStorage").Events.Character.UsePerk:FireServer("Cola")
+end
+end})
 Tabs.Visual:AddSection({"ESP"})
 Tabs.Visual:AddToggle({
 	Name = "Nextbots ESP",
@@ -277,7 +309,7 @@ if _G.NextbotsESP then
 local GamePlayers = workspace.Game.Players
 for i, v in pairs(GamePlayers:GetChildren()) do
 if not game.Players:FindFirstChild(v.Name) and not v.HumanoidRootPart:FindFirstChild("Nextbots_ESP") then
-Cylinder(v.HumanoidRootPart, v.Name, "Nextbots_ESP")
+Cylinder(v.HumanoidRootPart, "Nextbots_ESP")
 end
 end
 else
@@ -297,9 +329,7 @@ _G.PlayerESP = value
 while wait(1) do
 if _G.PlayersESP then
 for _,v in pairs(workspace.Game.Players:GetDescendants()) do
-if not v:FindFirstChild("Players_ESP") then
 Highlight(v, "Players_ESP")
-end
 end		
 else
 for i, v in pairs(workspace:GetDescendants()) do
