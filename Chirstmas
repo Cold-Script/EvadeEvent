@@ -177,8 +177,10 @@ Tabs.Main:AddToggle({
 _G.WalkDown = value
 spawn(function()
 pcall(function()
-while _G.WalkDown and workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):GetAttribute('Downed') do wait(1)
+while _G.WalkDown do wait(1)
+if workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):GetAttribute('Downed') then
 workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):SetAttribute('Downed', false)
+end
 end
 end)
 end)
