@@ -271,7 +271,10 @@ _G.PlayersESP = value
 while wait(1) do
 if _G.PlayersESP then
 for _,v in pairs(workspace.Game.Players:GetChildren()) do
+if not v:FindFirstChild("Players_ESP") then
 Highlight(v, "Players_ESP")
+end
+end
 end		
 else
 for i, v in pairs(workspace:GetDescendants()) do
