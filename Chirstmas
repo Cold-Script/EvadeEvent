@@ -66,14 +66,16 @@ Tabs.Main:AddToggle({
 	Description = "Teleport Far to AFK",
 	Callback=function(value)
 _G.AFK = value
-while _G.AFK and not _G.AutoTickets do wait(0.3)
-spawn(function()
-pcall(function()
-game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
-wait(0.25)
-game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(-50000, _G.C2, -50000)
-end)
-end)
+if value then
+local part = Instance.new("Part", workspace)
+			part.Anchored = true
+			part.CFrame = CFrame.new(100, 996, 100)
+		end
+while _G.AFK do wait(0.3)
+local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+			local tickets = workspace.Game.Effects.Tickets
+			local hrp = char:WaitForChild("HumanoidRootPart", 3)
+hrp.CFrame = CFrame.new(100, 1000, 100)
 end
 end})
 Tabs.Main:AddToggle({
@@ -96,7 +98,7 @@ local part = Instance.new("Part", workspace)
 			if hrp == nil then
 				return
 			end
-			hrp.CFrame = CFrame.new(100, 1000, 100)
+			
 			for i, v in next, tickets:GetDescendants() do
 				if v.IsA(v, "BasePart") and v.Name == "HumanoidRootPart" then
 					hrp.CFrame = CFrame.new(v.Position)
